@@ -4,11 +4,13 @@ export const Container = styled.div`
     width: 100%;
     height: 100vh;
     
+
     display: grid;
     grid-template-rows: 105px auto;
-    grid-template-areas:
-    "header" 
-    "content";
+    grid-template-areas: 
+    "header"
+    "content"
+    ;
 
     > main {
         grid-area: content;
@@ -30,45 +32,32 @@ export const Container = styled.div`
         background-color: ${({ theme }) => theme.COLORS.ORANGE};
         border: 1px solid #000;
     }
-   
 `;
 
 export const Content = styled.div`
-    max-width: 1000px;
+    grid-area: content;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     
-    margin: 0 auto;
 
-    display: flex;
-    flex-direction: column;
+    margin-bottom: 25px;
 
-    > button:first-child {
-        align-self: self-start;
-        margin-bottom: -35px;
+    > h1 {
+        font-family: Roboto Slab;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    > button {
+        width: 200px;
+        height: 48px;
+        
+        align-items: center;
     }
 `;
-export const Info = styled.div`
-    max-width: 1000px;
-    margin: 0 auto;
 
-    display: flex;
-    gap: 8px;
-    justify-content: left;
 
-    margin-bottom: 40px;
-
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-    > img {
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-    }
-
-    > svg {
-        color: ${({ theme }) => theme.COLORS.ORANGE};
-
-    }
-`;
