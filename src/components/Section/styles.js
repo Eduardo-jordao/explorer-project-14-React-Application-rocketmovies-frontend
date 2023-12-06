@@ -11,7 +11,7 @@ export const Container = styled.section`
         
 
         color: ${({ theme }) => theme.COLORS.WHITE};
-        font-size: 36px;
+        font-size: 20px;
         font-weight: 400;
 
         font-family: Roboto Slab;

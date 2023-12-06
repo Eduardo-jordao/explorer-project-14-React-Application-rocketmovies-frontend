@@ -1,5 +1,7 @@
 import { Container, Content } from "./styles";
 
+import { Link } from "react-router-dom";
+
 import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
 import { Movie } from '../../components/Movie';
@@ -13,7 +15,9 @@ export function Home() {
             <main>
             <Content>
             <h1>Meus filmes</h1>
+            <Link to="/new">
             <Button title="+ Adicionar filme"/>
+            </Link>
             </Content>
             <Movie data={{
                 title: 'Interestellar',
