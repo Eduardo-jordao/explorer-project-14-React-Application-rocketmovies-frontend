@@ -1,62 +1,62 @@
-import { Container, Content } from "./styles";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { api } from "../../services/api";
 
-import { Link } from "react-router-dom";
+import { FiPlus } from "react-icons/fi";
 
-import { Header } from '../../components/Header';
-import { Button } from '../../components/Button';
-import { Movie } from '../../components/Movie';
-
+import { Container, Content, NewMovie } from "./styles";
+import { Header } from "../../components/Header";
+import { Movie } from "../../components/Movie";
 
 export function Home() {
+    const [search, setSearch] = useState("");
+    const [notes, setNotes] = useState([]);
+
+    const navigate = useNavigate();
+
+    const handleSearch = async (searchTerm) => {
+        setSearch(searchTerm);
+      };
+
+
+    useEffect(() => {
+        async function fetchMovies() {
+            const response = await api.get(`/notes?title=${search}`)
+            setNotes(response.data)
+        }
+
+        fetchMovies();
+    }, [search])
+
+    function handleDetails(id) {
+        navigate(`/details/${id}`)
+        
+    }
+
     return (
         <Container>
-            <Header />
+            <Header onSearch={handleSearch}/>
 
             <main>
-            <Content>
-            <h1>Meus filmes</h1>
-            <Link to="/new">
-            <Button title="+ Adicionar filme"/>
-            </Link>
-            </Content>
-            <Movie data={{
-                title: 'Interestellar',
-                tags: [
-                    { id: '1', name: 'Ficção científica'},
-                    { id: '2', name: 'Drama'},
-                    { id: '3', name: 'Familia'},
-                ]    
-            }}
-            />
-            <Movie data={{
-                title: 'Interestellar',
-                tags: [
-                    { id: '1', name: 'Ficção científica'},
-                    { id: '2', name: 'Drama'},
-                    { id: '3', name: 'Familia'},
-                ]    
-            }}
-            />
-            <Movie data={{
-                title: 'Interestellar',
-                tags: [
-                    { id: '1', name: 'Ficção científica'},
-                    { id: '2', name: 'Drama'},
-                    { id: '3', name: 'Familia'},
-                ]    
-            }}
-            />
-            <Movie data={{
-                title: 'Interestellar',
-                tags: [
-                    { id: '1', name: 'Ficção científica'},
-                    { id: '2', name: 'Drama'},
-                    { id: '3', name: 'Familia'},
-                ]    
-            }}
-            />
+                <Content>
+                    <div>
+                        <h1>Meus filmes</h1>
+                        <NewMovie to="/new">
+                            <FiPlus />
+                            Adiconar filme
+                        </NewMovie>
+                    </div>
+                    {
+                        notes.map(note => (
+                            <Movie
+                                key={String(note.id)}
+                                data={note}
+                                onClick={() => handleDetails(note.id)}
+                            />
+                        ))
+                    }
+                </Content>
             </main>
-            
         </Container>
     );
 }

@@ -38,7 +38,7 @@ export const Profile = styled(Link)`
     display: flex;
     align-items: center;
     justify-content: center;
-
+   
     
     
 
@@ -58,14 +58,7 @@ export const Profile = styled(Link)`
        
     }
 
-    span {
-        font-size: 14px;
-        color: ${({ theme }) => theme.COLORS.GRAY_100};
-
-        display: flex;
-        flex-direction: column;
-        text-align: right;
-    }
+    
 
     strong {
         font-size: 18px;
@@ -80,14 +73,26 @@ export const Profile = styled(Link)`
 export const Logout = styled.button`
     border: none;
     background: none;
+    margin-top: -10px;
+    display: flex;
+    
+    
 
 
     > svg {
         color: ${({ theme }) => theme.COLORS.ORANGE};
         font-size: 24px;
     }
+
+    span {
+        font-size: 14px;
+        color: ${({ theme }) => theme.COLORS.GRAY_100};
+
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+    }
 `;
 
-export const Search = styled.input`
 
-`;
+
